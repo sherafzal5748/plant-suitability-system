@@ -63,5 +63,18 @@
     "city": "Quetta",
     "street_address": "Jinnah Road Quetta",
     "image": "users/hamza.jpg"
+  },
+    {
+    "first_name": "kareem",
+    "last_name": "ziad",
+    "role": "enthusiast",
+    "email": "kareem@example.com",
+    "phone": "034445654",
+    "password": "password123",
+    "country": "Pakistan",
+    "state": "punjab",
+    "city": "faisalabad",
+    "street_address": "Jinnah Road faisalabad",
+    "image": "users/kareem.jpg"
   }
 ]
