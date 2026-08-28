@@ -1,0 +1,64 @@
+<?php
+
+namespace App\Mail;
+
+use Illuminate\Bus\Queueable;
+use Illuminate\Contracts\Queue\ShouldQueue;
+use Illuminate\Mail\Mailable;
+use Illuminate\Mail\Mailables\Attachment; 
+use Illuminate\Mail\Mailables\Content;
+use Illuminate\Mail\Mailables\Envelope;
+use Illuminate\Queue\SerializesModels;
+
+class forgotpasswordEmail extends Mailable
+{
+    use Queueable, SerializesModels;
+
+    //these will be sent to view file to render via html/css
+    public $mailmessage;
+    public $subject;
+    public $fourDigitNumber;
+    /**
+     * Create a new message instance.
+     */
+    public function __construct($subject, $message, $fourDigitNumber) //these parameters values comes from EmailController "send(new forgotpasswordEmail($subject, $message));"
+    {
+        $this->subject = $subject;
+        $this->mailmessage = $message;
+        $this->fourDigitNumber = $fourDigitNumber;
+    }
+
+    /**
+     * Get the message envelope.
+     */
+    public function envelope(): Envelope
+    {
+        return new Envelope(
+            subject: $this->subject,
+        );
+    }
+
+    /**
+     * Get the message content definition.
+     */
+    public function content(): Content
+    {
+        return new Content(
+           /*retun view/email/forgot_password_email.blade.
+           Data Members of this class( public $mailmessage; public $subject; public $fourDigitNumber;)
+            will be sent to view file
+           */ 
+        view: 'email.forgot_password_email', 
+        );
+    }
+
+    /**
+     * Get the attachments for the message.
+     *
+     * @return array<int, Attachment>
+     */
+    public function attachments(): array
+    {
+        return [];
+    }
+}

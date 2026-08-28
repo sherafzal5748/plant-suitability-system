@@ -1,0 +1,67 @@
+[
+  {
+    "first_name": "sher",
+    "last_name": "Afzal",
+    "role": "admin",
+    "email": "sherafzal5748@gmail.com",
+    "phone": "03001234567",
+    "password": "admin@123", 
+    "country": "Pakistan",
+    "state": "KPK",
+    "city": "swat",
+    "street_address": "shangla, chakesar",
+    "image": "users/sher.jpg"
+  },
+  {
+    "first_name": "imran",
+    "last_name": "Ahmed",
+    "role": "enthusiast",
+    "email": "imran@example.com",
+    "phone": "03111234567",
+    "password": "password123",
+    "country": "Pakistan",
+    "state": "Sindh",
+    "city": "Karachi",
+    "street_address": "Clifton Karachi",
+    "image": "users/imran.jpg"
+  },
+  {
+    "first_name": "Usman",
+    "last_name": "Raza",
+    "role": "farmer",
+    "email": "usman@example.com",
+    "phone": "03221234567",
+    "password": "password123",
+    "country": "Pakistan",
+    "state": "KPK",
+    "city": "Peshawar",
+    "street_address": "University Road Peshawar",
+    "image": "users/usman.jpg"
+  },
+  {
+    "first_name": "kamran",
+    "last_name": "Malik",
+    "role": "enthusiast",
+    "email": "kamran@example.com",
+    "phone": "03331234567",
+    "password": "password123",
+    "country": "Pakistan",
+    "state": "Punjab",
+    "city": "Islamabad",
+    "street_address": "F-10 Islamabad",
+    "image": "users/kamran.jpg"
+  },
+  {
+    "first_name": "Hamza",
+    "last_name": "Iqbal",
+    "role": "farmer",
+    "email": "hamza@example.com",
+    "phone": "03441234567",
+    "password": "password123",
+    "country": "Pakistan",
+    "state": "Balochistan",
+    "city": "Quetta",
+    "street_address": "Jinnah Road Quetta",
+    "image": "users/hamza.jpg"
+  }
+]
