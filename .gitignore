@@ -20,6 +20,7 @@
 /storage/pail
 /vendor
 /public/assets/plants_backup_images/
+/certs/
 Homestead.json
 Homestead.yaml
 Thumbs.db
