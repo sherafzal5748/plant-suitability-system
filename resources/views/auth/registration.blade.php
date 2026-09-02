@@ -225,7 +225,7 @@
         <!-- Form header -->
         <div class="flex items-center justify-between px-5 pt-6 pb-1">
           <h1 class="text-[20px] font-bold text-[#1a1a1a]">Administrative Enrollment</h1>
-          <span class="text-[12px] text-[#6b7280] font-medium">Step 1 of 1</span>
+          <span class="text-[12px] text-[#6b7280] font-medium"></span>
         </div>
 
         <!-- Global error alert context placeholder if validation fails -->
