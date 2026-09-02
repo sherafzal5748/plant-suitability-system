@@ -201,15 +201,7 @@
   ═══════════════════════════════════════ -->
   <div class="flex-1 flex flex-col bg-[#f0f5f7] relative">
 
-    <!-- Dark mode toggle top-right -->
-    <div class="absolute top-5 right-6">
-      <button class="dark-toggle" aria-label="Toggle dark mode">
-        <!-- Crescent moon icon -->
-        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#4b6070" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
-        </svg>
-      </button>
-    </div>
+   
 
     <!-- Vertically + horizontally centred form -->
     <div class="flex-1 flex items-center justify-center px-10">
