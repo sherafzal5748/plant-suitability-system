@@ -25,7 +25,7 @@
           <a href="{{ route('plants.export', request()->input()) }}" class="border border-gray-300 bg-white text-gray-700 text-sm font-medium px-4 py-2 rounded-lg hover:bg-gray-50 transition flex items-center justify-center">
             Export CSV
           </a>
-          <button class="bg-green-700 hover:bg-green-800 text-white text-sm font-semibold px-4 py-2 rounded-lg transition">Bulk Update</button>
+          <a href="{{ route('add_a_plant') }}" class="bg-green-700 text-white text-sm font-medium px-4 py-2 rounded-lg hover:bg-green-800 transition">Add a Plant</a>
         </div>
       </div>
 

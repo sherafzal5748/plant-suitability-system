@@ -113,8 +113,6 @@ Route::get('/plants/create', [AddPlantController::class, 'create'])->name('add_a
 Route::post('/plants', [AddPlantController::class, 'store'])->name('plants.store');
 
 //update a plant 
-
-Route::get('/plants/edit', [PlantUpdateController::class, 'edit'])->name('update_a_plant');
 Route::put('/plants/{id}', [PlantUpdateController::class, 'update'])->name('plants.update');
 
 //delete a plant routes

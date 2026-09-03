@@ -27,45 +27,46 @@
         -->
 
             @if(auth()->check() && auth()->user()->role === 'admin')
-            <a href="{{ route('admin.messages') }}"
-            id="notification-bell"
-            class="relative w-11 h-11 rounded-full bg-gray-100 flex items-center justify-center hover:bg-gray-200 transition flex-shrink-0 border border-[rgb(190,202,185)]">
+                <a href="{{ route('admin.messages') }}" 
+                id="notification-bell" 
+                class="relative w-11 h-11 rounded-full bg-gray-100 flex items-center justify-center hover:bg-gray-200 transition flex-shrink-0 border border-[rgb(190,202,185)]"> 
 
-            <svg class="w-6 h-6 text-slate-700" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6 6 0 10-12 0v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"/>
-            </svg>
+                    <svg class="w-6 h-6 text-slate-700" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+                        <rect x="3" y="5" width="18" height="14" rx="2"/>
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M3 7l9 6 9-6"/>
+                    </svg>
 
-            {{-- Red dot — shown/hidden by JS --}}
-            <span id="notif-dot"
-                    class="absolute top-2 right-2.5 w-2.5 h-2.5 rounded-full bg-red-500 transition-opacity duration-300"
-                    style="display:none;">
-            </span>
-            </a>
+                    {{-- Red dot — shown/hidden by JS --}} 
+                    <span id="notif-dot" 
+                        class="absolute top-2 right-2.5 w-2.5 h-2.5 rounded-full bg-red-500 transition-opacity duration-300" 
+                        style="display:none;"> 
+                    </span> 
+                </a>
 
-            <script>
-            (function() {
-            const UNREAD_URL = "{{ route('messages.unread.count') }}";
-            const dot        = document.getElementById('notif-dot');
+                <script>
+                (function() {
+                const UNREAD_URL = "{{ route('messages.unread.count') }}";
+                const dot        = document.getElementById('notif-dot');
 
-            function refreshDot() {
-                fetch(UNREAD_URL, { headers: { 'X-Requested-With': 'XMLHttpRequest' } })
-                .then(r => r.json())
-                .then(data => {
-                    dot.style.display = data.count > 0 ? 'block' : 'none';
-                })
-                .catch(() => {});
-            }
+                function refreshDot() {
+                    fetch(UNREAD_URL, { headers: { 'X-Requested-With': 'XMLHttpRequest' } })
+                    .then(r => r.json())
+                    .then(data => {
+                        dot.style.display = data.count > 0 ? 'block' : 'none';
+                    })
+                    .catch(() => {});
+                }
 
-            // Run on page load and then every 60 seconds
-            refreshDot();
-            setInterval(refreshDot, 60000);
+                // Run on page load and then every 60 seconds
+                refreshDot();
+                setInterval(refreshDot, 60000);
 
-            // Also react instantly when the messages page signals a change
-            window.addEventListener('unread-count-changed', e => {
-                dot.style.display = e.detail.count > 0 ? 'block' : 'none';
-            });
-            })();
-            </script>
+                // Also react instantly when the messages page signals a change
+                window.addEventListener('unread-count-changed', e => {
+                    dot.style.display = e.detail.count > 0 ? 'block' : 'none';
+                });
+                })();
+                </script>
             @endif
 
         <!-- Like Icon -->
@@ -77,11 +78,6 @@
             <span class="absolute -top-1.5 -right-1.5 bg-red-500 text-white text-xs w-4 h-4 rounded-full flex items-center justify-center font-bold leading-none">
                 {{ Auth::check() ? Auth::user()->whitelists()->count() : 0 }}
             </span>
-        </a>
-
-        <a href="{{ route('register.form') }}"
-            class="bg-green-600 hover:bg-green-700 text-white text-sm font-semibold px-4 py-1.5 rounded-full transition">
-            SIGN UP
         </a>
 
         <div class="flex items-center gap-2">

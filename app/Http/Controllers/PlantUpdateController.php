@@ -11,13 +11,6 @@ class PlantUpdateController extends Controller
     /**
      * Load the lookup engine with all existing plant data records.
      */
-    public function edit()
-    {
-        // Fetch all elements to allow JavaScript to handle interactive filtering safely
-        $plants = DB::table('plants')->get();
-        
-        return view('admin.update_a_plant', compact('plants'));
-    }
 
     /**
      * Persist structural changes to the database.
@@ -76,6 +69,7 @@ class PlantUpdateController extends Controller
                 'sunlight_requirement' => $validated['sunlight_requirement'] ?? null,
             ]);
 
-        return redirect()->route('update_a_plant')->with('success', 'Botanical parameters optimized and saved successfully!');
+        // return redirect()->route('update_a_plant')->with('success', 'Botanical parameters optimized and saved successfully!');
+        return redirect()->back()->with('success', 'Botanical parameters optimized and saved successfully!');
     }
 }
