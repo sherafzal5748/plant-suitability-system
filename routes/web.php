@@ -20,7 +20,7 @@ use App\Http\Controllers\ChangePasswordController;
 use App\Http\Controllers\EmailController;
 use App\Http\Controllers\PassowrdResetController;
 use App\Http\Controllers\PlantSuitabilityController;
-
+use App\Http\Controllers\AdvisoryTicketController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -146,7 +146,6 @@ Route::middleware(['auth'])->prefix('admin')->group(function () {
     Route::delete('/messages-bulk',          [MessageController::class, 'destroyFiltered'])->name('admin.messages.bulk-delete');
 });
 
-Route::get('/support', fn() => view('frontend.support'))->name('support');
 
 
 Route::middleware(['auth'])->group(function () {
@@ -210,4 +209,39 @@ Route::get('/Password_reset_successfully', function () {
 Route::middleware('auth')->group(function () {
     Route::get('/plant/{plant}/suitability', [PlantSuitabilityController::class, 'show'])
         ->name('plant.suitability');
+});
+
+
+/*
+|--------------------------------------------------------------------------
+| Advisory Ticket Routes
+|--------------------------------------------------------------------------
+| Copy these into your existing routes/web.php.
+| Don't forget the "use" import at the top of that file:
+|
+|   use App\Http\Controllers\AdvisoryTicketController;
+|
+*/
+
+// ---- User-facing (any logged-in user) --------------------------------
+Route::middleware('auth')->group(function () {
+    // NOTE: if you already have a `Route::...->name('support')` line
+    // pointing at a static view, replace it with this one instead.
+    Route::get('/support', [AdvisoryTicketController::class, 'index'])->name('support');
+
+    Route::post('/support/ticket', [AdvisoryTicketController::class, 'store'])->name('advisory.store');
+
+    Route::get('/support/unread-count', [AdvisoryTicketController::class, 'unreadCount'])->name('advisory.unread.count');
+});
+
+// ---- Admin-only --------------------------------------------------------
+// Adjust the 'admin' middleware name if your app calls it something else
+// (you're already using role-based checks like auth()->user()->role === 'admin'
+// in your blades, so make sure a matching route middleware exists — see the
+// integration notes below if it doesn't yet).
+Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
+    Route::get('/tickets', [AdvisoryTicketController::class, 'adminIndex'])->name('admin.tickets');
+    Route::get('/tickets/{ticket}', [AdvisoryTicketController::class, 'adminShow'])->name('admin.tickets.show');
+    Route::post('/tickets/{ticket}/reply', [AdvisoryTicketController::class, 'reply'])->name('admin.tickets.reply');
+    Route::delete('/tickets/{ticket}', [AdvisoryTicketController::class, 'destroy'])->name('admin.tickets.destroy');
 });

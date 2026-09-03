@@ -1,5 +1,4 @@
 
-
 <header class="bg-[rgb(243,250,255)] border-b border-slate-200 px-6 py-3 flex items-center gap-4">
     <!-- Brand Logo -->
     @if(auth()->check() && auth()->user()->role !== 'admin')
@@ -65,6 +64,46 @@
                 window.addEventListener('unread-count-changed', e => {
                     dot.style.display = e.detail.count > 0 ? 'block' : 'none';
                 });
+                })();
+                </script>
+            @endif
+
+            {{--
+                Advisory-ticket notification bell — visible to regular
+                users only (NOT admins). Lights up when a botanist has
+                replied to one of the user's tickets.
+            --}}
+            @if(auth()->check() && auth()->user()->role !== 'admin')
+                <a href="{{ route('support') }}#my-tickets"
+                id="advisory-notification-bell"
+                class="relative w-11 h-11 rounded-full bg-gray-100 flex items-center justify-center hover:bg-gray-200 transition flex-shrink-0 border border-[rgb(190,202,185)]">
+
+                    <svg class="w-6 h-6 text-slate-700" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"/>
+                    </svg>
+
+                    <span id="advisory-notif-dot"
+                        class="absolute top-2 right-2.5 w-2.5 h-2.5 rounded-full bg-red-500 transition-opacity duration-300"
+                        style="display:none;">
+                    </span>
+                </a>
+
+                <script>
+                (function() {
+                const UNREAD_URL = "{{ route('advisory.unread.count') }}";
+                const dot        = document.getElementById('advisory-notif-dot');
+
+                function refreshAdvisoryDot() {
+                    fetch(UNREAD_URL, { headers: { 'X-Requested-With': 'XMLHttpRequest' } })
+                    .then(r => r.json())
+                    .then(data => {
+                        dot.style.display = data.count > 0 ? 'block' : 'none';
+                    })
+                    .catch(() => {});
+                }
+
+                refreshAdvisoryDot();
+                setInterval(refreshAdvisoryDot, 60000);
                 })();
                 </script>
             @endif

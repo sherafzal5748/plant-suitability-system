@@ -9,6 +9,22 @@
         <p class="mt-1 text-sm text-gray-500">Get expert advice, diagnose plant health issues, or find the perfect flora for your space.</p>
     </div>
 
+    {{-- Flash messages --}}
+    @if (session('success'))
+        <div class="mb-6 rounded-lg bg-emerald-50 border border-emerald-200 text-emerald-700 text-sm px-4 py-3">
+            {{ session('success') }}
+        </div>
+    @endif
+    @if ($errors->any())
+        <div class="mb-6 rounded-lg bg-red-50 border border-red-200 text-red-700 text-sm px-4 py-3">
+            <ul class="list-disc list-inside space-y-0.5">
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
+
     {{-- Search --}}
     <div class="mb-8">
         <div class="relative">
@@ -112,75 +128,79 @@
             <div class="border border-gray-200 rounded-xl bg-white p-5">
                 <p class="text-sm text-gray-500 mb-4 leading-relaxed">Having trouble keeping your green friends alive? Send details about your environment, and our horticultural specialists will review it.</p>
 
-                <form action="#" method="" class="space-y-3">
-                    {{-- @csrf --}}
+                <form action="{{ route('advisory.store') }}" method="POST" class="space-y-3">
+                    @csrf
                     <div>
                         <label class="block text-xs font-medium text-gray-600 mb-1">Issue Focus Area</label>
-                        <select class="w-full text-sm rounded-lg border border-gray-200 px-3 py-2 text-gray-700 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent bg-white transition">
+                        <select name="topic" required class="w-full text-sm rounded-lg border border-gray-200 px-3 py-2 text-gray-700 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent bg-white transition">
                             <option value="">Select a topic…</option>
-                            <option>Incorrect Suitability Matching</option>
-                            <option>Plant Pathology (Sick/Dying Plant)</option>
-                            <option>Soil / Fertilizer Advisory</option>
-                            <option>Account & Dashboard Setup</option>
-                            <option>Other / Feedback</option>
+                            <option value="Incorrect Suitability Matching" @selected(old('topic') === 'Incorrect Suitability Matching')>Incorrect Suitability Matching</option>
+                            <option value="Plant Pathology (Sick/Dying Plant)" @selected(old('topic') === 'Plant Pathology (Sick/Dying Plant)')>Plant Pathology (Sick/Dying Plant)</option>
+                            <option value="Soil / Fertilizer Advisory" @selected(old('topic') === 'Soil / Fertilizer Advisory')>Soil / Fertilizer Advisory</option>
+                            <option value="Account & Dashboard Setup" @selected(old('topic') === 'Account & Dashboard Setup')>Account & Dashboard Setup</option>
+                            <option value="Other / Feedback" @selected(old('topic') === 'Other / Feedback')>Other / Feedback</option>
                         </select>
                     </div>
                     <div>
                         <label class="block text-xs font-medium text-gray-600 mb-1">Environmental Symptoms / Message</label>
                         <textarea
+                            name="message"
+                            required
                             rows="4"
                             placeholder="Describe your plant type, indoor/outdoor setup, watering habits, and symptoms..."
                             class="w-full text-sm rounded-lg border border-gray-200 px-3 py-2 text-gray-700 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent resize-none transition"
-                        ></textarea>
+                        >{{ old('message') }}</textarea>
                     </div>
-                    <button  class="w-full py-2.5 px-4 text-sm font-medium rounded-lg bg-emerald-600 hover:bg-emerald-700 text-white transition focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-1">
+                    <button type="submit" class="w-full py-2.5 px-4 text-sm font-medium rounded-lg bg-emerald-600 hover:bg-emerald-700 text-white transition focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-1">
                         Submit Advisory Ticket
                     </button>
                 </form>
             </div>
 
-            {{-- Other Channels --}}
-            <div class="border border-gray-200 rounded-xl bg-white divide-y divide-gray-100 overflow-hidden">
-
-                <a href="mailto:botany-support@example.com" class="flex items-center gap-3 px-5 py-3.5 hover:bg-gray-50 transition">
-                    <div class="flex-shrink-0 w-8 h-8 rounded-lg bg-gray-100 flex items-center justify-center">
-                        <svg class="w-4 h-4 text-gray-500" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
-                        </svg>
-                    </div>
-                    <div>
-                        <p class="text-sm font-medium text-gray-700">Email a Botanist</p>
-                        <p class="text-xs text-gray-400">horticulture@yourdomain.com</p>
-                    </div>
-                </a>
-
-                <a href="#" class="flex items-center gap-3 px-5 py-3.5 hover:bg-gray-50 transition">
-                    <div class="flex-shrink-0 w-8 h-8 rounded-lg bg-gray-100 flex items-center justify-center">
-                        <svg class="w-4 h-4 text-gray-500" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"/>
-                        </svg>
-                    </div>
-                    <div>
-                        <p class="text-sm font-medium text-gray-700">Instant Chat Helper</p>
-                        <p class="text-xs text-gray-400">AI Plant Guide - Available 24/7</p>
-                    </div>
-                </a>
-
-                <a href="#" class="flex items-center gap-3 px-5 py-3.5 hover:bg-gray-50 transition">
-                    <div class="flex-shrink-0 w-8 h-8 rounded-lg bg-gray-100 flex items-center justify-center">
-                        <svg class="w-4 h-4 text-gray-500" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
-                        </svg>
-                    </div>
-                    <div>
-                        <p class="text-sm font-medium text-gray-700">My Saved Tickets</p>
-                        <p class="text-xs text-gray-400">Track history of garden diagnoses</p>
-                    </div>
-                </a>
-
-            </div>
-
         </div>
+    </div>
+
+    {{-- My Tickets & Botanist Replies --}}
+    <div id="my-tickets" class="mt-10 scroll-mt-6">
+        <h2 class="text-sm font-semibold text-gray-700 uppercase tracking-wide mb-4">My Advisory Tickets</h2>
+
+        @if($tickets->isEmpty())
+            <div class="border border-dashed border-gray-200 rounded-xl bg-white p-6 text-center text-sm text-gray-400">
+                You haven't submitted any advisory tickets yet.
+            </div>
+        @else
+            <div class="space-y-4">
+                @foreach($tickets as $ticket)
+                    <div class="border border-gray-200 rounded-xl bg-white p-5">
+                        <div class="flex items-start justify-between gap-3">
+                            <div>
+                                <p class="text-sm font-medium text-gray-800">{{ $ticket->topic }}</p>
+                                <p class="mt-1 text-xs text-gray-400">Submitted {{ $ticket->created_at->diffForHumans() }}</p>
+                            </div>
+                            <span class="flex-shrink-0 text-xs font-medium px-2.5 py-1 rounded-full {{ $ticket->status === 'answered' ? 'bg-emerald-50 text-emerald-600' : 'bg-amber-50 text-amber-600' }}">
+                                {{ $ticket->status === 'answered' ? 'Answered' : 'Awaiting reply' }}
+                            </span>
+                        </div>
+
+                        <p class="mt-3 text-sm text-gray-500 leading-relaxed">{{ $ticket->message }}</p>
+
+                        @if($ticket->replies->isNotEmpty())
+                            <div class="mt-4 pt-4 border-t border-gray-100 space-y-3">
+                                @foreach($ticket->replies as $reply)
+                                    <div class="flex gap-3">
+                                        <div class="flex-shrink-0 w-7 h-7 rounded-full bg-emerald-100 text-emerald-700 flex items-center justify-center text-xs font-semibold">B</div>
+                                        <div class="flex-1 bg-emerald-50/60 rounded-lg px-3.5 py-2.5">
+                                            <p class="text-xs font-medium text-emerald-700 mb-0.5">Botanist reply · {{ $reply->created_at->diffForHumans() }}</p>
+                                            <p class="text-sm text-gray-700 leading-relaxed">{{ $reply->message }}</p>
+                                        </div>
+                                    </div>
+                                @endforeach
+                            </div>
+                        @endif
+                    </div>
+                @endforeach
+            </div>
+        @endif
     </div>
 
 </div>
