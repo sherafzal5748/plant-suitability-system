@@ -436,17 +436,19 @@ if user is NOT Admin then inherit Home Layout
 
               <div class="flex items-center justify-between mt-2">
 
-                  <div class="flex items-center gap-1 text-[11.5px] text-[#6b7280]">
+                <div class="flex items-center gap-1 text-[11.5px] text-[#6b7280]">
+                    <span>Growth Period:</span>
+                    <span>
+                        {{ $plant->growth_period }}
+                        {{ $plant->growth_period == 1 ? 'month' : 'months' }}
+                    </span>
+                </div>
 
-                      {{ $plant->growth_period }}
+                <span class="text-[11.5px] font-semibold text-[#2e7d32]">
+                    View Details
+                </span>
 
-                  </div>
-
-                  <span class="text-[11.5px] font-semibold text-[#2e7d32]">
-                      View Details
-                  </span>
-
-              </div>
+            </div>
 
           </div>
 

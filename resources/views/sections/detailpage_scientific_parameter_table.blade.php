@@ -14,9 +14,6 @@
     {{-- Header --}}
     <div class="flex items-center justify-between px-5 py-4 border-b border-gray-100 bg-[#f8fafc]">
         <h2 class="font-semibold text-gray-700 text-sm">Scientific Parameters</h2>
-        <button class="text-xs text-green-600 font-semibold hover:underline tracking-wide uppercase">
-            Export PDF
-        </button>
     </div>
 
     @if($plant->detail)
