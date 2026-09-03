@@ -19,13 +19,8 @@
   <header class="flex items-center justify-between px-6 py-4 border-b border-gray-100 bg-white">
     <!-- Logo -->
     <div class="flex items-center gap-2.5">
-      <div class="w-8 h-8 rounded-xl bg-green-600 flex items-center justify-center shadow">
-        <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5">
-          <path d="M12 2a10 10 0 0 1 10 10c0 5.52-4.48 10-10 10S2 17.52 2 12c0-2.76 1.12-5.26 2.93-7.07"/>
-          <path d="M12 6v6l4 2"/>
-        </svg>
-      </div>
-      <span class="font-bold text-gray-800 text-base tracking-tight">GreenFarm <span class="text-green-600">Pro</span></span>
+      <img src="{{ asset('assets/icons/main_logo.png') }}" alt="Suitable Sow" class="w-8 h-8 rounded-xl object-contain bg-emerald-700" />
+      <span class="font-bold text-gray-800 text-base tracking-tight">Suitable-Sow <span class="text-emerald-600">User Profile</span></span>
     </div>
     <!-- Nav links -->
     <nav class="flex items-center gap-5 text-xs font-medium text-gray-400">
@@ -71,10 +66,10 @@
             <!-- Camera icon button -->
             <div
               onclick="document.getElementById('avatarInput').click()"
-              class="absolute bottom-1 right-1 w-6 h-6 bg-white rounded-full flex items-center justify-center shadow cursor-pointer hover:bg-blue-50 transition"
+              class="absolute bottom-1 right-1 w-6 h-6 bg-white rounded-full flex items-center justify-center shadow cursor-pointer hover:bg-emerald-50 transition"
               title="Change profile picture"
             >
-              <svg class="w-3.5 h-3.5 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+              <svg class="w-3.5 h-3.5 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
                 <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/>
                 <circle cx="12" cy="13" r="4"/>
               </svg>
@@ -148,7 +143,7 @@
         <!-- Buttons -->
         <div class="flex gap-2 mb-1">
           <a href="{{ route('edit_profile') }}" class="flex items-center gap-1.5 border border-gray-200 text-gray-700 text-xs font-medium px-3 py-1.5 rounded-lg hover:bg-gray-50 transition">
-            <svg class="w-3.5 h-3.5 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+            <svg class="w-3.5 h-3.5 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
               <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/>
               <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/>
             </svg>
@@ -170,7 +165,7 @@
 
       <!-- Section Title -->
       <div class="flex items-center gap-2 mb-5">
-        <svg class="w-4 h-4 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+        <svg class="w-4 h-4 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
           <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/>
         </svg>
         <h2 class="font-bold text-gray-800 text-base">Profile Details</h2>
@@ -210,8 +205,8 @@
         <!-- Email -->
         <div>
           <p class="text-[10px] font-semibold text-gray-400 uppercase tracking-wider mb-1.5">E-Mail</p>
-          <div class="flex items-center gap-1.5 text-blue-500 text-sm font-medium">
-            <svg class="w-3.5 h-3.5 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          <div class="flex items-center gap-1.5 text-emerald-600 text-sm font-medium">
+            <svg class="w-3.5 h-3.5 text-emerald-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
             {{ auth()->user()->email }}
           </div>
         </div>
@@ -279,7 +274,7 @@
           </button>
       </form>
 
-      <a href="{{ route('home') }}" class="flex items-center gap-2 bg-white border border-gray-200 text-gray-600 text-xs font-medium px-4 py-2 rounded-xl shadow-sm hover:bg-gray-50 hover:text-green-700 hover:border-green-300 transition">
+      <a href="{{ route('home') }}" class="flex items-center gap-2 bg-white border border-gray-200 text-gray-600 text-xs font-medium px-4 py-2 rounded-xl shadow-sm hover:bg-gray-50 hover:text-emerald-700 hover:border-emerald-300 transition">
           <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
               <path d="M19 12H5M12 5l-7 7 7 7"/>
           </svg>
@@ -288,17 +283,10 @@
   </div>
 
   <!-- ── FOOTER ── -->
-  <footer class="px-6 py-4 border-t border-gray-100 bg-white flex items-center justify-between">
+  <footer class="px-6 py-4 border-t border-gray-100 bg-white flex items-center justify-center">
     <div class="flex items-center gap-1.5 text-gray-400 text-xs">
-      <div class="w-5 h-5 rounded-md bg-green-600 flex items-center justify-center">
-        <svg class="w-2.5 h-2.5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5"><path d="M12 2a10 10 0 0 1 10 10c0 5.52-4.48 10-10 10S2 17.52 2 12"/></svg>
-      </div>
-      <span>© 2026 <span class="font-semibold text-gray-500">GreenFarm Pro</span>. All rights reserved.</span>
-    </div>
-    <div class="flex items-center gap-4 text-xs text-gray-400">
-      <a href="#" class="hover:text-green-600 transition">Privacy Policy</a>
-      <a href="#" class="hover:text-green-600 transition">Terms of Use</a>
-      <a href="#" class="hover:text-green-600 transition">Support</a>
+      <img src="{{ asset('assets/icons/main_logo.png') }}" alt="Suitable Sow" class="w-5 h-5 rounded-md object-contain bg-emerald-700" />
+      <span>© 2026 <span class="font-semibold text-gray-500">Suitable Sow</span>. All rights reserved.</span>
     </div>
   </footer>
 
