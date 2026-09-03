@@ -51,8 +51,8 @@ class EmailController extends Controller
         // Save the code to the session or DB so you can verify it when they type it in!
         session(['verification_code' => $fourDigitNumber]); 
 
-        $subject = "this is subject frm sher";
-        $message = "message from suitable sow";
+        $subject = "Your OTP";
+        $message = "Enter OTP given below to reset your password";
 
         Mail::to($toEmail)->send(new forgotpasswordEmail($subject, $message, $fourDigitNumber));
     }
